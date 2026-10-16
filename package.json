@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "check": "node --check src/index.js",
-    "test": "node --test test/*.test.js",
+    "test": "node --test test/control.test.js test/process.test.js",
     "test:package": "node scripts/check-package.js",
     "prepublishOnly": "npm run check && npm test"
   },
