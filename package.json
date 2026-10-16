@@ -1,0 +1,53 @@
+{
+  "name": "@tempest-term/remote-sdk",
+  "version": "0.1.0",
+  "description": "Node.js client for Tempest CLI remote protocol v1.",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "require": "./src/index.js",
+      "default": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "check": "node --check src/index.js",
+    "test": "node --test test/*.test.js",
+    "test:package": "node scripts/check-package.js",
+    "prepublishOnly": "npm run check && npm test"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "author": "Altas Express LLC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tempest-term/tempest-remote-sdk.git"
+  },
+  "homepage": "https://github.com/tempest-term/tempest-remote-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/tempest-term/tempest-remote-sdk/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "keywords": [
+    "tempest",
+    "ssh",
+    "remote",
+    "sdk",
+    "vscode",
+    "codex"
+  ]
+}
