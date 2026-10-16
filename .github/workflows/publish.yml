@@ -26,3 +26,7 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify published registry metadata
+        run: npm view "@tempest-term/remote-sdk@$(node -p 'require("./package.json").version')" dist --json
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
