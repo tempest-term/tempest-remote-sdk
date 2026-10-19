@@ -101,7 +101,7 @@ descriptors or manually rebuild ProxyCommand settings.
 
 ## Consumers
 
-- [Tempest Remote for VS Code](https://github.com/tempest-term/tempest-remote-vscode)
+- [Tempest Remote for VS Code](https://github.com/tempest-term/tempest-remote-editors/tree/main/vscode)
   supplies VS Code authentication UI and opens Remote - SSH workspaces.
 - [Tempest Remote for Codex](https://github.com/tempest-term/tempest-remote-codex) supplies local-terminal prompts, a Codex
   add-host link and an SSH keepalive. Its separate MCP configuration runs
