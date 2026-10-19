@@ -6,9 +6,12 @@ export interface Server {
 }
 
 export interface Remote {
+  /** CLI-assigned SSH alias. Treat as a name, not an encoded identity. */
   sshHost: string;
   sessionId: string;
 }
+
+export function isSshHost(host: unknown): host is string;
 
 export interface Prompt {
   type: 'prompt';

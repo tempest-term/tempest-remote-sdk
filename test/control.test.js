@@ -1,7 +1,7 @@
 'use strict';
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { ControlClient } = require('../src');
+const { ControlClient, isSshHost } = require('../src');
 
 function harness(prompt) {
   const client = Object.create(ControlClient.prototype);
@@ -196,6 +196,17 @@ test('invalid remote identity cancels setup rather than handing it off', async (
   respond(child, [{ protocol: 1 }, { sshHost: 'bad', sessionId: 'bad' }]);
   await assert.rejects(client.ensureRemote('opaque'), /Invalid remote/);
   assert.equal(child.killed, true);
+});
+
+test('readable SSH names pass through without decoding their identity', async () => {
+  const { client, child } = processClient();
+  const remote = { sshHost: 'tempest-ubuntu-cloudnet-6e0f3044c311', sessionId: 'b'.repeat(64) };
+  respond(child, [{ protocol: 1 }, remote]);
+  assert.deepEqual(await client.ensureRemote('opaque'), remote);
+  client.dispose();
+  for (const unsafe of ['tempest-host\nHost *', 'tempest-host;echo', 'tempest-*', 'tempest--host', null]) {
+    assert.equal(isSshHost(unsafe), false);
+  }
 });
 
 test('unknown error codes cannot select prototype properties or leak diagnostics', () => {

@@ -68,6 +68,11 @@ and validate results. The lower-level `request(method, params)` API is available
 for consumers already implementing those checks. Send requests sequentially;
 the CLI has a bounded request queue. IDs are opaque and must be used intact.
 
+SSH aliases are names, not encoded identities. New connections can use readable
+names such as `tempest-ubuntu-cloudnet-6e0f3044c311`; the CLI reuses an already
+assigned alias when reconnecting. Consumers must not assume a 64-character hash.
+`isSshHost(value)` validates an alias for use by a host integration.
+
 Constructor options: `account` selects a CLI account for this process;
 `timeoutMs` defaults to 600000; `maxFrameBytes` defaults to 8 MiB for incoming
 frames; `onTrace` receives safe method/outcome messages. Outgoing protocol

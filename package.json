@@ -1,6 +1,6 @@
 {
   "name": "@tempest-term/remote-sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node.js client for Tempest CLI remote protocol v1.",
   "main": "src/index.js",
   "types": "src/index.d.ts",

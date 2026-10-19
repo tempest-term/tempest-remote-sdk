@@ -1,6 +1,11 @@
 'use strict';
 const { spawn } = require('node:child_process');
 
+function isSshHost(host) {
+  return typeof host === 'string' && host.length <= 253 &&
+    /^tempest-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(host);
+}
+
 // Control-only NDJSON. No SSH bytes, terminal escapes, or stderr parsing.
 class ControlClient {
   constructor(executable, prompt, { spawnProcess = spawn, onTrace = () => {}, account,
@@ -122,7 +127,7 @@ class ControlClient {
     }
     await this.checkProtocol();
     const remote = await this.request('remote.ensure', { serverId, ...(configFile ? { configFile } : {}) });
-    if (!/^tempest-[a-f0-9]{64}$/.test(remote?.sshHost || '') ||
+    if (!isSshHost(remote?.sshHost) ||
       !/^[a-f0-9]{64}$/.test(remote?.sessionId || '')) {
       this.cancel();
       throw new Error('Invalid remote SSH host or session identity.');
@@ -160,4 +165,4 @@ class ControlClient {
     this.fail(new Error('Tempest control connection disposed.'));
   }
 }
-module.exports = { ControlClient };
+module.exports = { ControlClient, isSshHost };
