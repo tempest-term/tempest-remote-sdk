@@ -9,6 +9,15 @@ export interface Remote {
   /** CLI-assigned SSH alias. Treat as a name, not an encoded identity. */
   sshHost: string;
   sessionId: string;
+  /** Existing local SSH listener; absent when reusing an older CLI session. */
+  ssh?: {
+    host: '127.0.0.1';
+    port: number;
+    user: 'tempest';
+    identityFile: string;
+    /** OpenSSH public host key. Verify it when connecting directly. */
+    hostKey: string;
+  };
 }
 
 export function isSshHost(host: unknown): host is string;

@@ -92,6 +92,12 @@ parsed or logged. The SDK never reflects arbitrary error messages from CLI.
   It must attach within 120 seconds. Once attached, data pipes drive lifetime;
   the last closed pipe gives a short reconnect grace. Consider a temporary SSH
   keepalive while waiting for a user to complete a host-selection UI.
+- When available, `remote.ssh` exposes the existing loopback SSH listener:
+  `host`, `port`, `user`, `identityFile`, and the OpenSSH public `hostKey`.
+  Native SSH clients can use it directly and must verify that host key.
+  Active direct SSH connections also keep the tunnel alive. This field is
+  absent for sessions created by older CLI versions; never use the private
+  attach descriptor's port as an SSH port.
 - Ensure again before reopening a saved/recent connection. A stored alias does
   not create a new tunnel, and the SDK never replays interrupted commands.
 
