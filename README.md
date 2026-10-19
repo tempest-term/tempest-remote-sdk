@@ -103,7 +103,7 @@ descriptors or manually rebuild ProxyCommand settings.
 
 - [Tempest Remote for VS Code](https://github.com/tempest-term/tempest-remote-vscode)
   supplies VS Code authentication UI and opens Remote - SSH workspaces.
-- The sibling `tempest-codex` plugin supplies local-terminal prompts, a Codex
+- [Tempest Remote for Codex](https://github.com/tempest-term/tempest-remote-codex) supplies local-terminal prompts, a Codex
   add-host link and an SSH keepalive. Its separate MCP configuration runs
   `tempest mcp`; MCP is not part of this remote-control SDK.
 
